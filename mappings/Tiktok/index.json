@@ -1,0 +1,65 @@
+{
+  "vendor": "Tiktok",
+  "mappings": [
+    {
+      "id": "Tiktok-PDP-1",
+      "name": "Tiktok PDP (Product Detail Page) v1",
+      "file": "Tiktok-PDP-1.json",
+      "description": "Standard product detail page mapping with populated source fields"
+    },
+    {
+      "id": "Tiktok-PDP-2",
+      "name": "Tiktok PDP (Product Detail Page) v2",
+      "file": "Tiktok-PDP-2.json",
+      "description": "Standard product detail page mapping with populated source fields"
+    },
+    {
+      "id": "Tiktok-Products",
+      "name": "Tiktok Products Schema",
+      "file": "Tiktok-Products.json",
+      "description": "Products schema with empty source fields (template)"
+    },
+    {
+      "id": "Tiktok-Products-2",
+      "name": "Tiktok Products Schema v2",
+      "file": "Tiktok-Products-2.json",
+      "description": "Products schema for the flatter username-products export shape (no Mobile_Price_Lite/{XX}_shops wrapper; product_list under data.product_list_map['Store.Product_Page_Feeds.Single'] instead of data.products.product_list_map['Showcase.Profile_Page_Showcase_Feeds.Common'])"
+    },
+    {
+      "id": "Tiktok-PDP-3",
+      "name": "Tiktok PDP (Product Detail Page) v3",
+      "file": "Tiktok-PDP-3.json",
+      "description": "product-skus PDP mapping for the flatter export shape (no {XX}_shops wrapper; bare country-code folders, now including GB/US) whose page payload is a Remix/Next.js-style route loader structure: loaderData['(product_name_slug$)/(product_id)/page'].page_config.components_map[N].component_data.product_info (N varies per file, located via filter:component_type==product_info) instead of Tiktok-PDP-1's data.product_details[0] or Tiktok-PDP-2's product_details.goda_protocol.global.product_info_resp.products[0]. Column sources are otherwise copied from Tiktok-PDP-1, which already carried product_model/seller_model/promotion_model/review_model fallback paths matching this shape almost exactly. From 2026-09-24 the payload is flattened onto component_data.product_info (empty product_model; skus/title/images/desc_blocks/price directly on product_info) — handled by trailing || fallbacks, so both shapes resolve per entry."
+    }
+  ],
+  "default": "Tiktok-PDP-1",
+  "selectionRules": [
+    {
+      "requestType": "username-products",
+      "filename": "*/{CN_shops|ID_shops|MY_shops|PH_shops|SG_shops|TH_shops|TW_shops|VN_shops}/(?<shop_name>[^/]+)/*.json",
+      "mappingId": "Tiktok-Products"
+    },
+    {
+      "requestType": "username-products",
+      "zipFilenameDateFrom": "2026-09-02",
+      "filename": "(.+/)?{CN|ID|MY|PH|SG|TH|TW|VN}/(?<shop_name>[^/]+)/*.json",
+      "mappingId": "Tiktok-Products-2"
+    },
+    {
+      "requestType": "product-skus",
+      "zipFilenameDateFrom": "2026-09-02",
+      "filename": "(.+/)?{CN|GB|ID|MY|PH|SG|TH|TW|US|VN}/(?<shop_name>[^/]+)/*.json",
+      "mappingId": "Tiktok-PDP-3"
+    },
+    {
+      "requestType": "product-skus",
+      "filename": "*/output/{CN|ID|MY|PH|SG|TH|TW|VN}/*.json",
+      "mappingId": "Tiktok-PDP-1"
+    },
+    {
+      "requestType": "product-skus",
+      "filename": "(.+/)?{CN_shops|ID_shops|MY_shops|PH_shops|SG_shops|TH_shops|TW_shops|VN_shops}/*/*.json",
+      "mappingId": "Tiktok-PDP-2"
+    }
+  ]
+}

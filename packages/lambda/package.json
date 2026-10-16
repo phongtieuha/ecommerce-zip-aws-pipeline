@@ -1,0 +1,39 @@
+{
+  "name": "@filepipeline/lambda",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --env-file=../../.env src/local-processor-runner.ts",
+    "dev:data-quality": "bun run --env-file=../../.env src/local-data-quality-runner.ts",
+    "dev:coordinator": "bun run --env-file=../../.env src/local-coordinator-runner.ts",
+    "dev:zip-checker": "bun run --env-file=../../.env src/local-zip-checker-runner.ts",
+    "build": "bun build src/processor/index.ts --outdir=dist/processor --target=bun",
+    "build:aws": "node build-aws.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.540.0",
+    "@aws-sdk/client-s3": "^3.540.0",
+    "@aws-sdk/client-sqs": "^3.540.0",
+    "@aws-sdk/lib-dynamodb": "^3.540.0",
+    "@filepipeline/shared": "workspace:*",
+    "@sendgrid/mail": "^8.1.6",
+    "@types/aws-lambda": "^8.10.161",
+    "@types/uuid": "^11.0.0",
+    "aws-lambda": "^1.0.7",
+    "cheerio": "^1.0.0",
+    "country-to-currency": "^2.0.2",
+    "csv-parse": "^5.5.0",
+    "csv-stringify": "^6.4.0",
+    "unzipper": "^0.12.0",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-lambda": "^3.1024.0",
+    "@aws-sdk/client-secrets-manager": "^3.1024.0",
+    "@types/unzipper": "^0.10.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.4.0"
+  }
+}

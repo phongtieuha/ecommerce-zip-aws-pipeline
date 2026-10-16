@@ -1,0 +1,394 @@
+{
+  "vendor": "Lazada-PDP-2",
+  "pathExtraction": {
+    "path": "data[0].responseBody.data.module"
+  },
+  "rowExpansion": {
+    "arrayPath": "skuInfos|Object.values",
+    "dedupKey": "skuId"
+  },
+  "columns": {
+    "ads_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "avg_rating": {
+      "source": "review.averageRating || review.ratings.average",
+      "type": "number",
+      "required": false,
+      "min": 0,
+      "max": 5
+    },
+    "brand_id": {
+      "source": "tracking.brand_id",
+      "type": "string",
+      "required": false
+    },
+    "brand_name": {
+      "source": "tracking.brand_name",
+      "type": "string",
+      "required": false
+    },
+    "category_id": {
+      "source": "$expansion.categoryId",
+      "type": "string",
+      "required": true
+    },
+    "category_name": {
+      "source": "tracking.pdt_category|join:,",
+      "type": "string",
+      "required": false
+    },
+    "category_name_en": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "cnt_bonus_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_desc_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_img_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_title_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_total_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_vid_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "currency": {
+      "source": "tracking.core.currencyCode",
+      "type": "string",
+      "required": true,
+      "default": "$s3.country|currency"
+    },
+    "download_rank": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "hist_sold": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "image_urls": {
+      "source": "skuGalleries.0|extract_field_to_array:poster|unique",
+      "filter": "type|eq:img",
+      "type": "array",
+      "required": false,
+      "default": []
+    },
+    "is_ad": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_available": {
+      "source": "$expansion.quantity.limit.max|gt:0",
+      "type": "boolean",
+      "required": true
+    },
+    "is_free_shipping": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_mart": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_official_shop": {
+      "source": "$lookup.Lazada.region.shop_id || $lookup.Lazada.region.shop_name",
+      "type": "boolean",
+      "required": false
+    },
+    "is_preferred_plus_seller": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "keyword_priority": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l1_category": {
+      "source": "tracking.pdt_category[0]",
+      "type": "string",
+      "required": false,
+      "default": "Beauty & Personal Care"
+    },
+    "l2_category": {
+      "source": "tracking.pdt_category[1]",
+      "type": "string",
+      "required": false,
+      "default": "Oral Care"
+    },
+    "l3_category": {
+      "source": "tracking.pdt_category[2]",
+      "type": "string",
+      "required": false
+    },
+    "l4_category": {
+      "source": "tracking.pdt_category[3]",
+      "type": "string",
+      "required": false
+    },
+    "liked_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "listed_on": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "manufacturer": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "num_bullets_update": {
+      "source": "product.desc|count_bullets_clean",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "num_images": {
+      "source": "skuGalleries.0|extract_field_to_array:poster|unique|length",
+      "filter": "type|eq:img",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "num_vid": {
+      "source": "skuGalleries.0|extract_field_to_array:src|unique|length",
+      "filter": "type|eq:video",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "organic_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "overall_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "platform": {
+      "source": "",
+      "type": "string",
+      "required": true,
+      "default": "Lazada"
+    },
+    "sku_price_after_discount": {
+      "source": "$expansion.price.salePrice.value",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "sku_price_before_discount": {
+      "source": "$expansion.price.originalPrice.value",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_max_after_discount": {
+      "source": "skuInfos|Object.values|extract_field_to_array:price.salePrice.value|max",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_max_before_discount": {
+      "source": "skuInfos|Object.values|extract_field_to_array:price.originalPrice.value|max",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_after_discount": {
+      "source": "skuInfos|Object.values|extract_field_to_array:price.salePrice.value|min",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_before_discount": {
+      "source": "skuInfos|Object.values|extract_field_to_array:price.originalPrice.value|min",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "product_desc": {
+      "source": "product.desc",
+      "type": "string",
+      "required": false,
+      "default": ""
+    },
+    "product_name": {
+      "source": "product.title",
+      "type": "string",
+      "required": true
+    },
+    "product_url": {
+      "source": "$root.data[0].url",
+      "type": "string",
+      "required": true
+    },
+    "rating_count": {
+      "source": "review.reviews || review.ratings.rateCount",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "rating_count_with_context": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "rating_count_with_image": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "recorded_on": {
+      "source": "$root.cube_metadata.snapshot_timestamp|date:YYYY-MM-DD",
+      "type": "string",
+      "required": true
+    },
+    "region": {
+      "source": "$root.cube_metadata.country",
+      "type": "string",
+      "required": true,
+      "default": "$s3.country"
+    },
+    "review_count": {
+      "source": "review.reviews || review.ratings.rateCount",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "search_keyword": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "shop_id": {
+      "source": "seller.sellerId || shopId",
+      "type": "string",
+      "required": true
+    },
+    "shop_location": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "$s3.country"
+    },
+    "shop_name": {
+      "source": "seller.name || seller_name || tracking.seller_name || shopName",
+      "type": "string",
+      "required": false
+    },
+    "sku_name": {
+      "source": "productOption.skuBase.skus|find:$expansion.skuId|get:propPath|transform_lazada_sku_name",
+      "type": "string",
+      "required": true
+    },
+    "small_cat": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "source_product_id": {
+      "source": "primaryKey.itemId",
+      "type": "string",
+      "required": true
+    },
+    "source_sku_id": {
+      "source": "$expansion.skuId",
+      "type": "string",
+      "required": true
+    },
+    "stock": {
+      "source": "$expansion.quantity.limit.max",
+      "type": "number",
+      "required": false
+    },
+    "updated_num_words": {
+      "source": "product.desc|count_words_no_bullet",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "video_urls": {
+      "source": "skuGalleries.0|extract_field_to_array:src|unique",
+      "filter": "type|eq:video",
+      "type": "array",
+      "required": false,
+      "default": []
+    },
+    "word_count": {
+      "source": "product.desc|count_words",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "cleaned_product_desc": {
+      "source": "product.desc|clean_product_description",
+      "type": "string",
+      "required": false,
+      "default": ""
+    },
+    "product_name_char_count": {
+      "source": "product.title|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "product_desc_char_count": {
+      "source": "product.desc|clean_product_description|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "is_lorikeet": {
+      "source": "product.desc|contain_image|boolean_to_text",
+      "type": "string",
+      "required": false
+    },
+    "product_desc_images": {
+      "source": "product.desc|extract_product_desc_images",
+      "type": "array",
+      "required": false,
+      "default": []
+    }
+  }
+}

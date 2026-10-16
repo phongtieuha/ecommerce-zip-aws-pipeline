@@ -1,0 +1,386 @@
+{
+  "vendor": "711-Products",
+  "parser": "html",
+  "pathExtraction": {
+    "scriptExpression": "(() => { const html = (typeof __html === 'string' ? __html : '') || (typeof window !== 'undefined' && typeof window.__html === 'string' ? window.__html : ''); if (!html) return []; const canonicalMatch = html.match(/<link href=\"https:\\/\\/allonline\\.7eleven\\.co\\.th\\/brands\\/supermarket\\/([^\\/\"?#]+)\\/?\" rel=\"canonical\"\\/?>/i) || html.match(/<form action=\"\\/brands\\/supermarket\\/([^\\/\"?#]+)\\//i); const shopId = canonicalMatch?.[1]?.trim() ?? ''; const shopNameMatch = html.match(/<h1 class=\"header-category\">[\\s\\S]*?([^<\\n]+)[\\s\\S]*?<span class=\"how-many\">/i) || html.match(/<li class=\"active\"[\\s\\S]*?<span property=\"name\">\\s*([^<]+?)\\s*<\\/span>/i); const shopName = shopNameMatch?.[1]?.replace(/\\s+/g, ' ').trim() ?? ''; const categoryMatch = html.match(/<a href=\"\\/brands\\/supermarket\\/\"[^>]*>[\\s\\S]*?<span property=\"name\">\\s*([^<]+?)\\s*<\\/span>/i); const category = categoryMatch?.[1]?.replace(/\\s+/g, ' ').trim() ?? 'Supermarket'; const cards = html.split('<div class=\"product-item ').slice(1); return cards.map((card) => { const linkMatch = card.match(/<a class=\"productlink\"[^>]*data-href=\"([^\"]+)\"[^>]*href=\"([^\"]+)\"[^>]*title=\"([^\"]+)\"/i); if (!linkMatch) return null; const dataHref = linkMatch[1].replace(/&amp;/g, '&'); const href = linkMatch[2].replace(/&amp;/g, '&'); const title = linkMatch[3].replace(/&amp;/g, '&').trim(); const descMatch = card.match(/<div class=\"item description item-description-cls-mobile\">\\s*([\\s\\S]*?)\\s*<\\/div>/i); const rawName = (descMatch?.[1] ?? title.split(' - ')[0] ?? '').replace(/<[^>]+>/g, ' ').replace(/\\s+/g, ' ').trim(); const currentPriceMatch = card.match(/<div class=\"price price-cls-mobile\">[\\s\\S]*?<strong>\\s*฿\\s*([0-9.,]+)\\s*<\\/strong>/i); const strikePriceMatch = card.match(/<div class=\"price price-cls-mobile\">[\\s\\S]*?<s>\\s*฿\\s*([0-9.,]+)\\s*<\\/s>/i); const resolvedPrice = (currentPriceMatch?.[1] ?? strikePriceMatch?.[1] ?? '').replace(/,/g, ''); const productIdMatch = dataHref.match(/\\/(\\d+)\\/(?:\\?[^#\"]*)?#itemId=/); const skuIdMatch = dataHref.match(/#itemId=([0-9_]+)/); const productId = productIdMatch?.[1] ?? ''; const skuId = skuIdMatch?.[1] ?? ''; const normalizedSkuId = (skuId || productId).replace(/_0$/, '010'); return { brand: shopName, category, id: skuId || productId, name: rawName, list: href.startsWith('http') ? href : `https://allonline.7eleven.co.th${href}`, price: resolvedPrice, is_official_shop: true, shop_id: shopId, shop_name: shopName, sku_name: rawName, sku_id_normalized: normalizedSkuId, source_product_id_enriched: productId }; }).filter(Boolean); })()"
+  },
+  "columns": {
+    "ads_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "avg_rating": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0,
+      "max": 5
+    },
+    "brand_id": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "brand_name": {
+      "source": "brand",
+      "type": "string",
+      "required": false
+    },
+    "category_id": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "category_name": {
+      "source": "category",
+      "type": "string",
+      "required": true
+    },
+    "category_name_en": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "cnt_bonus_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_desc_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_img_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_title_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_total_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_vid_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "currency": {
+      "source": "$s3.country|currency",
+      "type": "string",
+      "required": true
+    },
+    "download_rank": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "hist_sold": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "image_urls": {
+      "source": "",
+      "type": "array",
+      "required": false,
+      "default": []
+    },
+    "is_ad": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_available": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_free_shipping": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_mart": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_official_shop": {
+      "source": "is_official_shop",
+      "type": "boolean",
+      "required": true
+    },
+    "is_preferred_plus_seller": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "keyword_priority": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l1_category": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "Beauty & Personal Care"
+    },
+    "l2_category": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "Oral Care"
+    },
+    "l3_category": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l4_category": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "liked_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "listed_on": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "manufacturer": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "num_bullets_update": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "num_images": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "num_vid": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "organic_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "overall_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "platform": {
+      "source": "",
+      "type": "string",
+      "required": true,
+      "default": "711"
+    },
+    "sku_price_after_discount": {
+      "source": "price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "sku_price_before_discount": {
+      "source": "price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_max_after_discount": {
+      "source": "price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_max_before_discount": {
+      "source": "price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_after_discount": {
+      "source": "price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_before_discount": {
+      "source": "price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "product_desc": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": ""
+    },
+    "product_name": {
+      "source": "name",
+      "type": "string",
+      "required": true
+    },
+    "product_url": {
+      "source": "list",
+      "type": "string",
+      "required": true
+    },
+    "rating_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "rating_count_with_context": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "rating_count_with_image": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "recorded_on": {
+      "source": "$dateFromZipName",
+      "type": "string",
+      "required": true
+    },
+    "region": {
+      "source": "",
+      "type": "string",
+      "required": true,
+      "default": "$s3.country"
+    },
+    "review_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "search_keyword": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "shop_id": {
+      "source": "shop_id",
+      "type": "string",
+      "required": true
+    },
+    "shop_location": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "$root.cube_metadata.country"
+    },
+    "shop_name": {
+      "source": "shop_name",
+      "type": "string",
+      "required": true
+    },
+    "sku_name": {
+      "source": "sku_name",
+      "type": "string",
+      "required": true
+    },
+    "small_cat": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "source_product_id": {
+      "source": "source_product_id_enriched",
+      "type": "string",
+      "required": true
+    },
+    "source_sku_id": {
+      "source": "sku_id_normalized",
+      "type": "string",
+      "required": true
+    },
+    "stock": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "updated_num_words": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "video_urls": {
+      "source": "",
+      "type": "array",
+      "required": false,
+      "default": []
+    },
+    "word_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "cleaned_product_desc": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": ""
+    },
+    "product_name_char_count": {
+      "source": "name|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "product_desc_char_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "is_lorikeet": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "product_desc_images": {
+      "source": "",
+      "type": "array",
+      "required": false,
+      "default": []
+    }
+  }
+}

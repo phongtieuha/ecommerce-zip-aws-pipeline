@@ -1,0 +1,41 @@
+{
+  "vendor": "711",
+  "mappings": [
+    {
+      "id": "711-PDP-1",
+      "name": "711 PDP (Product Detail Page) v1",
+      "file": "711-PDP-1.json",
+      "description": "Standard product detail page mapping with populated source fields"
+    },
+    {
+      "id": "711-Products",
+      "name": "711 Products Schema",
+      "file": "711-Products.json",
+      "description": "Products schema with empty source fields (template)"
+    },
+    {
+      "id": "711-Products-2",
+      "name": "711 Products Schema",
+      "file": "711-Products-2.json",
+      "description": "Feature 2"
+    }
+  ],
+  "default": "711-PDP-1",
+  "selectionRules": [
+    {
+      "requestType": "shop-products",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/*/html/*.html",
+      "mappingId": "711-Products"
+    },
+    {
+      "requestType": "keyword-products",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/*/html/*.html",
+      "mappingId": "711-Products-2"
+    },
+    {
+      "requestType": "product-skus",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/*/html/*.html",
+      "mappingId": "711-PDP-1"
+    }
+  ]
+}

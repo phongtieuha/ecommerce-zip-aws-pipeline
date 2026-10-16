@@ -1,0 +1,386 @@
+{
+  "vendor": "Shopee-Products",
+  "pathExtraction": {
+    "path": "data.centralize_item_card.item_cards || centralize_item_card.item_cards"
+  },
+  "columns": {
+    "ads_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "avg_rating": {
+      "source": "item_rating.rating_star",
+      "type": "number",
+      "required": false,
+      "min": 0,
+      "max": 5
+    },
+    "brand_id": {
+      "source": "global_brand.brand_id",
+      "type": "string",
+      "required": false
+    },
+    "brand_name": {
+      "source": "global_brand.display_name",
+      "type": "string",
+      "required": false
+    },
+    "category_id": {
+      "source": "catid",
+      "type": "string",
+      "required": true
+    },
+    "category_name": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "category_name_en": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "cnt_bonus_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_desc_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_img_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_title_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_total_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_vid_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "currency": {
+      "source": "$s3.country|currency",
+      "type": "string",
+      "required": true
+    },
+    "download_rank": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "hist_sold": {
+      "source": "item_card_display_sold_count.historical_sold_count_text|text_to_number",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "image_urls": {
+      "source": "item_card_displayed_asset.images|filter_empty_strings|mapurl:https://down-{country}.img.susercontent.com/file/{value}",
+      "type": "array",
+      "required": false,
+      "default": []
+    },
+    "is_ad": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_available": {
+      "source": "$zipFilename|not-contain:sold-out",
+      "type": "boolean",
+      "required": true
+    },
+    "is_free_shipping": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_mart": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_official_shop": {
+      "source": "item_card_displayed_asset.seller_flag.name|eq:OFFICIAL_SHOP",
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "is_preferred_plus_seller": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "keyword_priority": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l1_category": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "Beauty & Personal Care"
+    },
+    "l2_category": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "Oral Care"
+    },
+    "l3_category": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l4_category": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "liked_count": {
+      "source": "liked_count",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "listed_on": {
+      "source": "ctime|date:YYYY-MM-DD",
+      "type": "string",
+      "required": false
+    },
+    "manufacturer": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "num_bullets_update": {
+      "source": "details|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "num_images": {
+      "source": "item_card_displayed_asset.images|filter_empty_strings|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "num_vid": {
+      "source": "video_info_list|extract_field_to_array:formats|flatten|extract_field_to_array:url|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "organic_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "overall_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "platform": {
+      "source": "",
+      "type": "string",
+      "required": true,
+      "default": "Shopee"
+    },
+    "sku_price_after_discount": {
+      "source": "item_card_display_price.price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "sku_price_before_discount": {
+      "source": "item_card_display_price.strikethrough_price || item_card_display_price.original_price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_max_after_discount": {
+      "source": "item_card_display_price.price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_max_before_discount": {
+      "source": "item_card_display_price.strikethrough_price || item_card_display_price.original_price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_after_discount": {
+      "source": "item_card_display_price.price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_before_discount": {
+      "source": "item_card_display_price.strikethrough_price || item_card_display_price.original_price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "product_desc": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": ""
+    },
+    "product_name": {
+      "source": "item_card_displayed_asset.name",
+      "type": "string",
+      "required": true
+    },
+    "product_url": {
+      "source": "itemid|mapurl:https://{shopee_domain}.{country}/product/{shopid}/{itemid}",
+      "type": "string",
+      "required": true
+    },
+    "rating_count": {
+      "source": "item_rating.rating_count|sum",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "rating_count_with_context": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "rating_count_with_image": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "recorded_on": {
+      "source": "$root.cube_metadata.snapshot_timestamp_utc|date:YYYY-MM-DD || $dateFromZipName",
+      "type": "string",
+      "required": true
+    },
+    "region": {
+      "source": "",
+      "type": "string",
+      "required": true,
+      "default": "$s3.country"
+    },
+    "review_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "search_keyword": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "shop_id": {
+      "source": "shopid",
+      "type": "string",
+      "required": true
+    },
+    "shop_location": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "$root.cube_metadata.country"
+    },
+    "shop_name": {
+      "source": "shop_data.shop_name",
+      "type": "string",
+      "required": true
+    },
+    "sku_name": {
+      "source": "tier_variations|extract_field_to_array:options|flatten|join:, || item_card_displayed_asset.name",
+      "type": "string",
+      "required": true
+    },
+    "small_cat": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "source_product_id": {
+      "source": "itemid",
+      "type": "string",
+      "required": true
+    },
+    "source_sku_id": {
+      "source": "item_card_display_price.model_id",
+      "type": "string",
+      "required": false
+    },
+    "stock": {
+      "source": "$zipFilename|not-contain:sold-out|boolean_to_stock",
+      "type": "number",
+      "required": false
+    },
+    "updated_num_words": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "video_urls": {
+      "source": "video_info_list|extract_field_to_array:formats|flatten|extract_field_to_array:url",
+      "type": "array",
+      "required": false,
+      "default": []
+    },
+    "word_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "cleaned_product_desc": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": ""
+    },
+    "product_name_char_count": {
+      "source": "item_card_displayed_asset.name|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "product_desc_char_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "is_lorikeet": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "product_desc_images": {
+      "source": "",
+      "type": "array",
+      "required": false,
+      "default": []
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "vendor": "Lazada",
+  "mappings": [
+    {
+      "id": "Lazada-PDP-1",
+      "name": "Lazada PDP (Product Detail Page) v1",
+      "file": "Lazada-PDP-1.json",
+      "description": "Standard product detail page mapping with populated source fields"
+    },
+    {
+      "id": "Lazada-PDP-2",
+      "name": "Lazada PDP (Product Detail Page) v2",
+      "file": "Lazada-PDP-2.json",
+      "description": "Standard product detail page mapping with populated source fields"
+    },
+    {
+      "id": "Lazada-Products",
+      "name": "Lazada Products Schema",
+      "file": "Lazada-Products.json",
+      "description": "Products schema with empty source fields (template)"
+    },
+    {
+      "id": "Lazada-Products-2",
+      "name": "Lazada Products Schema v2",
+      "file": "Lazada-Products-2.json",
+      "description": "Feature 2"
+    }
+  ],
+  "default": "Lazada-PDP-1",
+  "selectionRules": [
+    {
+      "requestType": "shop-products",
+      "filename": "(.+/)?{id|sg|ph|cn|tw|vn|th|my}/.+\\.json",
+      "mappingId": "Lazada-Products"
+    },
+    {
+      "requestType": "product-skus",
+      "zipFilename": "*20260324T094025_ADHOC_PRODUCT_DETAILS_CS_LAZADA_DS_1.zip",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/output/*.json",
+      "mappingId": "Lazada-PDP-1"
+    },
+    {
+      "requestType": "product-skus",
+      "zipFilename": "*_ADHOC_PRODUCT_DETAILS_*",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/output/*.json",
+      "mappingId": "Lazada-PDP-2"
+    },
+    {
+      "requestType": "product-skus",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/output/*.json",
+      "mappingId": "Lazada-PDP-1"
+    },
+    {
+      "requestType": "product-skus-csapi",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/output/*.json",
+      "mappingId": "Lazada-PDP-2"
+    },
+    {
+      "requestType": "keyword-products",
+      "filename": "*/{id|sg|ph|cn|tw|vn|th|my}/*.json",
+      "mappingId": "Lazada-Products-2"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "vendor": "Shopee",
+  "mappings": [
+    {
+      "id": "Shopee-PDP-1",
+      "name": "Shopee PDP (Product Detail Page) v1",
+      "file": "Shopee-PDP-1.json",
+      "description": "Standard product detail page mapping with populated source fields"
+    },
+    {
+      "id": "Shopee-PDP-3",
+      "name": "Shopee PDP (Product Detail Page) v3",
+      "file": "Shopee-PDP-3.json",
+      "description": "Standard product detail page mapping with populated source fields"
+    },
+    {
+      "id": "Shopee-Products",
+      "name": "Shopee Products Schema",
+      "file": "Shopee-Products.json",
+      "description": "Products schema with empty source fields (template)"
+    },
+    {
+      "id": "Shopee-Products-2",
+      "name": "Shopee Products Schema v2",
+      "file": "Shopee-Products-2.json",
+      "description": "Feature 2"
+    }
+  ],
+  "default": "Shopee-PDP-3",
+  "selectionRules": [
+    {
+      "requestType": "shop-products",
+      "filename": "*/{id|sg|ph|cn|tw|vn|th|my}/*.json",
+      "mappingId": "Shopee-Products"
+    },
+    {
+      "requestType": "product-skus",
+      "zipFilename": "*Shopee-Product-SKU-MG-TW-*",
+      "filename": "*/{tw}/*/*.json",
+      "mappingId": "Shopee-PDP-3"
+    },
+    {
+      "requestType": "product-skus",
+      "zipFilename": "*SHOPEE__PRODUCT_SKUS__*__DS*__TM__*",
+      "zipFilenameDateFrom": "2026-08-21",
+      "filename": "*/{id|sg|ph|cn|tw|vn|th|my}/*/*.json",
+      "mappingId": "Shopee-PDP-1"
+    },
+    {
+      "requestType": "product-skus",
+      "zipFilename": "*SHOPEE__PRODUCT_SKUS__*__DS*__{MG|TM}__*",
+      "filename": "*/{id|sg|ph|cn|tw|vn|th|my}/*/*.json",
+      "mappingId": "Shopee-PDP-3"
+    },
+    {
+      "requestType": "product-skus",
+      "filename": "*/{id|sg|ph|cn|tw|vn|th|my}/*/*.json",
+      "mappingId": "Shopee-PDP-1"
+    },
+    {
+      "requestType": "keyword-products",
+      "filename": "*/**/{id|sg|ph|cn|tw|vn|th|my}/*.json",
+      "mappingId": "Shopee-Products-2"
+    }
+  ]
+}

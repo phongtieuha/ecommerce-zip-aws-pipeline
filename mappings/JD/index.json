@@ -1,0 +1,30 @@
+{
+  "vendor": "JD",
+  "mappings": [
+    {
+      "id": "JD-PDP-1",
+      "name": "JD PDP (Product Detail Page) v1",
+      "file": "JD-PDP-1.json",
+      "description": "Standard product detail page mapping with populated source fields"
+    },
+    {
+      "id": "JD-Products",
+      "name": "JD Products Schema",
+      "file": "JD-Products.json",
+      "description": "Products schema with empty source fields (template)"
+    }
+  ],
+  "default": "JD-PDP-1",
+  "selectionRules": [
+    {
+      "requestType": "shop-products",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/*/output/*.json",
+      "mappingId": "JD-Products"
+    },
+    {
+      "requestType": "product-skus",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/output/*.json",
+      "mappingId": "JD-PDP-1"
+    }
+  ]
+}

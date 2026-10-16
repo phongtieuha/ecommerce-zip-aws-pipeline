@@ -1,0 +1,248 @@
+{
+  "vendor": "711-Products",
+  "parser": "html",
+  "pathExtraction": {
+    "scriptExpression": "window.dataLayer.filter(x => x['ecommerce']).flatMap(x => x.ecommerce.impressions)"
+  },
+  "rowDeduplication": {
+    "partitionBy": ["region", "recorded_on", "search_keyword"],
+    "key": "source_product_id",
+    "keep": "first"
+  },
+  "columns": {
+    "ads_ranking": {
+      "compute": {
+        "type": "ranking",
+        "kind": "ads",
+        "dependsOn": "is_ad"
+      },
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "avg_rating": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0,
+      "max": 5
+    },
+    "brand_name": {
+      "source": "brand",
+      "type": "string",
+      "required": false
+    },
+    "category_id": {
+      "source": "",
+      "type": "string",
+      "required": true
+    },
+    "category_name": {
+      "source": "category",
+      "type": "string",
+      "required": true
+    },
+    "category_name_en": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "currency": {
+      "source": "$s3.country|currency",
+      "type": "string",
+      "required": true
+    },
+    "download_rank": {
+      "compute": {
+        "type": "ranking",
+        "kind": "download"
+      },
+      "type": "number",
+      "required": false
+    },
+    "hist_sold": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "is_ad": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_free_shipping": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_mart": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_official_shop": {
+      "source": "",
+      "type": "boolean",
+      "required": true
+    },
+    "is_preferred_plus_seller": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "keyword_priority": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l1_category": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "Beauty & Personal Care"
+    },
+    "l2_category": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "Oral Care"
+    },
+    "l3_category": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l4_category": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "liked_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "listed_on": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "manufacturer": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "organic_ranking": {
+      "compute": {
+        "type": "ranking",
+        "kind": "organic",
+        "dependsOn": "is_ad"
+      },
+      "type": "number",
+      "required": false
+    },
+    "overall_ranking": {
+      "compute": {
+        "type": "ranking",
+        "kind": "overall"
+      },
+      "type": "number",
+      "required": false
+    },
+    "platform": {
+      "source": "",
+      "type": "string",
+      "required": true,
+      "default": "711"
+    },
+    "price_max_after_discount": {
+      "source": "price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_max_before_discount": {
+      "source": "price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_after_discount": {
+      "source": "price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_before_discount": {
+      "source": "price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "product_name": {
+      "source": "name",
+      "type": "string",
+      "required": true
+    },
+    "product_url": {
+      "source": "list",
+      "type": "string",
+      "required": true
+    },
+    "rating_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "recorded_on": {
+      "source": "$dateFromZipName",
+      "type": "string",
+      "required": true
+    },
+    "region": {
+      "source": "",
+      "type": "string",
+      "required": true,
+      "default": "$s3.country"
+    },
+    "search_keyword": {
+      "source": "$keywordFromFoldername",
+      "type": "string",
+      "required": false
+    },
+    "shop_id": {
+      "source": "",
+      "type": "string",
+      "required": true
+    },
+    "shop_location": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "$root.cube_metadata.country"
+    },
+    "shop_name": {
+      "source": "",
+      "type": "string",
+      "required": true
+    },
+    "small_cat": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "source_product_id": {
+      "source": "id",
+      "type": "string",
+      "required": true
+    },
+    "stock": {
+      "source": "",
+      "type": "number",
+      "required": false
+    }
+  }
+}

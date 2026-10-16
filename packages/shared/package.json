@@ -1,0 +1,50 @@
+{
+  "name": "@filepipeline/shared",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./types": "./src/types/index.ts",
+    "./constants/channel-display-names": {
+      "types": "./src/constants/channel-display-names.ts",
+      "default": "./src/constants/channel-display-names.ts"
+    },
+    "./utility/bullet-points/vn": {
+      "types": "./src/utility/bullet-points/vn.ts",
+      "default": "./src/utility/bullet-points/vn.ts"
+    },
+    "./utility/bullet-points/id": {
+      "types": "./src/utility/bullet-points/id.ts",
+      "default": "./src/utility/bullet-points/id.ts"
+    },
+    "./utility/bullet-points/th": {
+      "types": "./src/utility/bullet-points/th.ts",
+      "default": "./src/utility/bullet-points/th.ts"
+    },
+    "./utility/bullet-points/ph": {
+      "types": "./src/utility/bullet-points/ph.ts",
+      "default": "./src/utility/bullet-points/ph.ts"
+    },
+    "./utility/ranking-calculator": {
+      "types": "./src/utility/ranking-calculator/index.ts",
+      "default": "./src/utility/ranking-calculator/index.ts"
+    },
+    "./utility/vendor-mappings": {
+      "types": "./src/utility/vendor-mappings.ts",
+      "default": "./src/utility/vendor-mappings.ts"
+    },
+    "./utility/date-extraction": {
+      "types": "./src/utility/date-extraction.ts",
+      "default": "./src/utility/date-extraction.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}

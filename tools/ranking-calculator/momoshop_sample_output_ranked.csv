@@ -1,0 +1,6 @@
+search_keyword,is_ad,product_name,source_product_id,source_sku_id,category_id,category_name,currency,platform,recorded_on,region,product_url,shop_id,shop_name,sku_name,is_available,is_official_shop,avg_rating,rating_count,stock,download_rank,ads_ranking,organic_ranking,overall_ranking
+toothpaste,1,Brand A Whitening Toothpaste 120g,P10001,S10001,CAT-ORAL,Oral Care,TWD,Momoshop,2026-03-30,tw,https://www.momoshop.com.tw/goods/G10001,SHOP-001,Smile Official,120g,TRUE,TRUE,4.7,1520,88,1,1,0,1
+toothpaste,0,Brand B Sensitive Toothpaste 100g,P10002,S10002,CAT-ORAL,Oral Care,TWD,Momoshop,2026-03-30,tw,https://www.momoshop.com.tw/goods/G10002,SHOP-002,Daily Care,100g,TRUE,FALSE,4.5,980,120,2,0,1,2
+toothpaste,0,Brand C Herbal Toothpaste 130g,P10003,S10003,CAT-ORAL,Oral Care,TWD,Momoshop,2026-03-30,tw,https://www.momoshop.com.tw/goods/G10003,SHOP-003,Green Smile,130g,TRUE,FALSE,4.3,430,64,3,0,2,3
+mouthwash,1,Brand D Cool Mint Mouthwash 500ml,P20001,S20001,CAT-ORAL,Oral Care,TWD,Momoshop,2026-03-30,tw,https://www.momoshop.com.tw/goods/G20001,SHOP-010,Fresh Official,500ml,TRUE,TRUE,4.8,2100,55,4,1,0,1
+mouthwash,0,Brand E Zero Alcohol Mouthwash 750ml,P20002,S20002,CAT-ORAL,Oral Care,TWD,Momoshop,2026-03-30,tw,https://www.momoshop.com.tw/goods/G20002,SHOP-011,Health Store,750ml,TRUE,FALSE,4.6,870,73,5,0,1,2

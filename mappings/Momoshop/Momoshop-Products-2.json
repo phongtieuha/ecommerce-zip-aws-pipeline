@@ -1,0 +1,255 @@
+{
+  "vendor": "Momoshop-Products",
+  "pathExtraction": {
+    "path": "data.rtnSearchData.goodsInfoList",
+    "ignoreIfContains": [
+      {
+        "path": "goodsCode",
+        "text": "RecWords",
+        "caseInsensitive": true
+      }
+    ]
+  },
+  "rowDeduplication": {
+    "partitionBy": ["region", "recorded_on", "search_keyword"],
+    "key": "source_product_id",
+    "keep": "first"
+  },
+  "columns": {
+    "ads_ranking": {
+      "compute": {
+        "type": "ranking",
+        "kind": "ads",
+        "dependsOn": "is_ad"
+      },
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "avg_rating": {
+      "source": "rating",
+      "type": "number",
+      "required": false,
+      "min": 0,
+      "max": 5
+    },
+    "brand_name": {
+      "source": "$root.data.rtnSearchData.brandNameList[0].brandName",
+      "type": "string",
+      "required": false
+    },
+    "category_id": {
+      "source": "categoryCode",
+      "type": "string",
+      "required": true
+    },
+    "category_name": {
+      "source": "",
+      "type": "string",
+      "required": true
+    },
+    "category_name_en": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "currency": {
+      "source": "goodsPriceModel.basePrice.sign",
+      "type": "string",
+      "required": true,
+      "default": "$s3.country|currency"
+    },
+    "download_rank": {
+      "compute": {
+        "type": "ranking",
+        "kind": "download"
+      },
+      "type": "number",
+      "required": false
+    },
+    "hist_sold": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "is_ad": {
+      "source": "isAdGoods",
+      "type": "boolean",
+      "required": false
+    },
+    "is_free_shipping": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_mart": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_official_shop": {
+      "source": "",
+      "type": "boolean",
+      "required": true
+    },
+    "is_preferred_plus_seller": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "keyword_priority": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l1_category": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "Beauty & Personal Care"
+    },
+    "l2_category": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "Oral Care"
+    },
+    "l3_category": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l4_category": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "liked_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "listed_on": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "manufacturer": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "organic_ranking": {
+      "compute": {
+        "type": "ranking",
+        "kind": "organic",
+        "dependsOn": "is_ad"
+      },
+      "type": "number",
+      "required": false
+    },
+    "overall_ranking": {
+      "compute": {
+        "type": "ranking",
+        "kind": "overall"
+      },
+      "type": "number",
+      "required": false
+    },
+    "platform": {
+      "source": "$root.cube_metadata.channel",
+      "type": "string",
+      "required": true,
+      "default": "Momoshop"
+    },
+    "price_max_after_discount": {
+      "source": "goodsPriceModel.basePrice.price || goodsPrice",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_max_before_discount": {
+      "source": "marketPriceModel.basePrice.price || goodsPriceOri || goodsPriceModel.basePrice.price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_after_discount": {
+      "source": "goodsPriceModel.basePrice.price || goodsPrice",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_before_discount": {
+      "source": "marketPriceModel.basePrice.price || goodsPriceOri || goodsPriceModel.basePrice.price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "product_name": {
+      "source": "goodsName",
+      "type": "string",
+      "required": true
+    },
+    "product_url": {
+      "source": "goodsFeatureUrl",
+      "type": "string",
+      "required": true
+    },
+    "rating_count": {
+      "source": "ratingTimes",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "recorded_on": {
+      "source": "$root.cube_metadata.snapshot_timestamp|date:YYYY-MM-DD",
+      "type": "string",
+      "required": true
+    },
+    "region": {
+      "source": "$root.cube_metadata.country",
+      "type": "string",
+      "required": true,
+      "default": "$s3.country"
+    },
+    "search_keyword": {
+      "source": "$root.data.searchKeyWord",
+      "type": "string",
+      "required": false
+    },
+    "shop_id": {
+      "source": "$root.data.rtnSearchData.brandNameList[0].brandNo",
+      "type": "string",
+      "required": true
+    },
+    "shop_location": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "$root.cube_metadata.country"
+    },
+    "shop_name": {
+      "source": "shopName || goodsName|extract_from_square_brackets",
+      "type": "string",
+      "required": true
+    },
+    "small_cat": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "source_product_id": {
+      "source": "goodsCode",
+      "type": "string",
+      "required": true
+    },
+    "stock": {
+      "source": "goodsStock",
+      "type": "number",
+      "required": false
+    }
+  }
+}

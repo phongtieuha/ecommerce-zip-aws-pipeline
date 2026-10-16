@@ -1,0 +1,41 @@
+{
+  "vendor": "Momoshop",
+  "mappings": [
+    {
+      "id": "Momoshop-PDP-1",
+      "name": "Momoshop PDP (Product Detail Page) v1",
+      "file": "Momoshop-PDP-1.json",
+      "description": "Standard product detail page mapping with populated source fields"
+    },
+    {
+      "id": "Momoshop-Products-1",
+      "name": "Momoshop Products Schema",
+      "file": "Momoshop-Products-1.json",
+      "description": "Products schema with empty source fields (template)"
+    },
+    {
+      "id": "Momoshop-Products-2",
+      "name": "Momoshop Products Schema",
+      "file": "Momoshop-Products-2.json",
+      "description": "Feature 2"
+    }
+  ],
+  "default": "Momoshop-PDP-1",
+  "selectionRules": [
+    {
+      "requestType": "catalogue-products",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/**/output/{\\d+}.json",
+      "mappingId": "Momoshop-Products-1"
+    },
+    {
+      "requestType": "keyword-products",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/**/output/{\\d+}.json",
+      "mappingId": "Momoshop-Products-2"
+    },
+    {
+      "requestType": "product-skus",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/product_sku/output/*.json",
+      "mappingId": "Momoshop-PDP-1"
+    }
+  ]
+}

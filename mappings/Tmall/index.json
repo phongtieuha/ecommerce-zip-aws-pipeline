@@ -1,0 +1,41 @@
+{
+  "vendor": "Tmall",
+  "mappings": [
+    {
+      "id": "Tmall-PDP-1",
+      "name": "Tmall PDP (Product Detail Page) v1",
+      "file": "Tmall-PDP-1.json",
+      "description": "Standard product detail page mapping with populated source fields"
+    },
+    {
+      "id": "Tmall-Products",
+      "name": "Tmall Products Schema",
+      "file": "Tmall-Products.json",
+      "description": "Products schema with empty source fields (template)"
+    },
+    {
+      "id": "Tmall-Products-2",
+      "name": "Tmall Products v2 (keyword-products)",
+      "file": "Tmall-Products-2.json",
+      "description": "Keyword products mapping with itemList path extraction"
+    }
+  ],
+  "default": "Tmall-PDP-1",
+  "selectionRules": [
+    {
+      "requestType": "keyword-products",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/*/output/*.json",
+      "mappingId": "Tmall-Products-2"
+    },
+    {
+      "requestType": "shop-products",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/*/output/*.json",
+      "mappingId": "Tmall-Products"
+    },
+    {
+      "requestType": "product-skus",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/output/*.json",
+      "mappingId": "Tmall-PDP-1"
+    }
+  ]
+}

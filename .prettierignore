@@ -1,0 +1,16 @@
+node_modules
+dist
+dist-aws
+.next
+.svelte-kit
+build
+.env
+.env.local
+.env.*.local
+*.lock
+bun.lock
+.DS_Store
+.git
+.gitignore
+.github
+coverage

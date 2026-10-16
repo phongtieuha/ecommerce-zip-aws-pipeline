@@ -1,0 +1,41 @@
+{
+  "vendor": "Watsons",
+  "mappings": [
+    {
+      "id": "Watsons-PDP-1",
+      "name": "Watsons PDP (Product Detail Page) v1",
+      "file": "Watsons-PDP-1.json",
+      "description": "Standard product detail page mapping with populated source fields"
+    },
+    {
+      "id": "Watsons-Products",
+      "name": "Watsons Products Schema",
+      "file": "Watsons-Products.json",
+      "description": "Products schema with empty source fields (template)"
+    },
+    {
+      "id": "Watsons-Products-2",
+      "name": "Watsons Products Schema v2",
+      "file": "Watsons-Products-2.json",
+      "description": "Feature 2"
+    }
+  ],
+  "default": "Watsons-PDP-1",
+  "selectionRules": [
+    {
+      "requestType": "shop-products",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/*/output/*.json",
+      "mappingId": "Watsons-Products"
+    },
+    {
+      "requestType": "product-skus",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/output/*.json",
+      "mappingId": "Watsons-PDP-1"
+    },
+    {
+      "requestType": "keyword-products",
+      "filename": "*/**/{id|sg|ph|cn|tw|vn|th|my}/*.json",
+      "mappingId": "Watsons-Products-2"
+    }
+  ]
+}

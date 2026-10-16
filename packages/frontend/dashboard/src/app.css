@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+@source "./**/*.{ts,tsx,html}";
+@source inline("text-primary-foreground");
+
+:root {
+  --background: rgb(29, 23, 82);
+  --foreground: #e8efff;
+  --card: rgb(14, 16, 56);
+  --card-foreground: #e8efff;
+  --popover: #1b2b49;
+  --popover-foreground: #e8efff;
+  --primary: #1d2f55;
+  --primary-foreground: #ffffff;
+  --secondary: rgb(22, 17, 64);
+  --secondary-foreground: #93aad4;
+  --muted: #243556;
+  --muted-foreground: #8ba2cb;
+  --accent: #2b4268;
+  --accent-foreground: #9db6df;
+  --success: #113932;
+  --success-foreground: #35d8a4;
+  --destructive: #7b2424;
+  --destructive-foreground: #ffe6e6;
+  --border: #2a3d63;
+  --input: #223355;
+  --ring: rgb(242, 101, 49);
+  --radius: 0.75rem;
+  --bar-default: #3b82f6;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-serif: "Plus Jakarta Sans", sans-serif;
+  --radius-sm: calc(var(--radius) - 0.25rem);
+  --radius-md: calc(var(--radius) - 0.125rem);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 0.25rem);
+}
+
+html {
+  @apply bg-background;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--background);
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 70%;
+  aspect-ratio: 1;
+  background-image: url("/images/abstract_network.png");
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: grayscale(100%);
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  body::before {
+    width: min(48vw, 16rem);
+  }
+}

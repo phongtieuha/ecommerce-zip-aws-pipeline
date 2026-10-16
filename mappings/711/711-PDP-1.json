@@ -1,0 +1,382 @@
+{
+  "vendor": "711-PDP-1",
+  "parser": "html",
+  "columns": {
+    "ads_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "avg_rating": {
+      "source": "document.querySelector('.rating-sum-wrapper .result').innerText|rating_text_to_number",
+      "type": "number",
+      "required": false
+    },
+    "brand_id": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "brand_name": {
+      "source": "document.querySelector('.art-detail-page-title a').innerText",
+      "type": "string",
+      "required": false
+    },
+    "category_id": {
+      "source": "document.querySelector('.back-navi a').getAttribute('href')",
+      "type": "string",
+      "required": true
+    },
+    "category_name": {
+      "source": "document.querySelector('.back-navi a').innerText",
+      "type": "string",
+      "required": true
+    },
+    "category_name_en": {
+      "source": "document.querySelector('.back-navi a').innerText",
+      "type": "string",
+      "required": false
+    },
+    "cnt_bonus_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_desc_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_img_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_title_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_total_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_vid_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "currency": {
+      "source": "document.querySelector('.price [itemprop=priceCurrency]').getAttribute('content')",
+      "type": "string",
+      "required": true
+    },
+    "download_rank": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "hist_sold": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "image_urls": {
+      "source": "document.querySelectorAll('.thumbnail.imageLink img').getAttribute('src')",
+      "type": "array",
+      "required": false,
+      "default": []
+    },
+    "is_ad": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_available": {
+      "source": "document.querySelector('.available').innerText|length|gt:0",
+      "type": "boolean",
+      "required": true
+    },
+    "is_free_shipping": {
+      "source": "document.querySelector('.free-icon span').innerText|contain:ฟรี",
+      "type": "boolean",
+      "required": false
+    },
+    "is_mart": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_official_shop": {
+      "source": "document.querySelector('.art-detail-page-title a').innerText|length|gt:0",
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
+    "is_preferred_plus_seller": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "keyword_priority": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l1_category": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "Beauty & Personal Care"
+    },
+    "l2_category": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "Oral Care"
+    },
+    "l3_category": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l4_category": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "liked_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "listed_on": {
+      "source": "document.querySelector('.white-space-nowrap').innerText|split: - |first",
+      "type": "string",
+      "required": false
+    },
+    "manufacturer": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "num_bullets_update": {
+      "source": "document.querySelector('[itemprop=description]').innerHTML|count_bullets_clean",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "num_images": {
+      "source": "document.querySelectorAll('.thumbnail.imageLink img').getAttribute('src')|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "num_vid": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "organic_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "overall_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "platform": {
+      "source": "",
+      "type": "string",
+      "required": true,
+      "default": "711"
+    },
+    "sku_price_after_discount": {
+      "source": "document.querySelector('.price .currentPrice').innerText",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "sku_price_before_discount": {
+      "source": "document.querySelector('.price strike').innerText",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_max_after_discount": {
+      "source": "document.querySelector('.price .currentPrice').innerText",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_max_before_discount": {
+      "source": "document.querySelector('.price strike').innerText",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_after_discount": {
+      "source": "document.querySelector('.price .currentPrice').innerText",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_before_discount": {
+      "source": "document.querySelector('.price strike').innerText",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "product_desc": {
+      "source": "document.querySelector('[itemprop=description]').innerHTML",
+      "type": "string",
+      "required": false,
+      "default": ""
+    },
+    "product_name": {
+      "source": "document.querySelector('#title-product').innerText",
+      "type": "string",
+      "required": true
+    },
+    "product_url": {
+      "source": "document.querySelector('[property=\"og:url\"]').getAttribute('content')",
+      "type": "string",
+      "required": true
+    },
+    "rating_count": {
+      "source": "document.querySelector('.reviews small').innerText",
+      "type": "string",
+      "required": false,
+      "default": 0
+    },
+    "rating_count_with_context": {
+      "source": "document.querySelectorAll('.rating')|length",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "rating_count_with_image": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "recorded_on": {
+      "source": "$dateFromZipName",
+      "type": "string",
+      "required": true
+    },
+    "region": {
+      "source": "",
+      "type": "string",
+      "required": true,
+      "default": "$s3.country"
+    },
+    "review_count": {
+      "source": "document.querySelector('.reviews small').innerText",
+      "type": "string",
+      "required": false,
+      "min": 0
+    },
+    "search_keyword": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "shop_id": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "shop_location": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "$s3.country"
+    },
+    "shop_name": {
+      "source": "document.querySelector('.art-detail-page-title').innerText",
+      "type": "string",
+      "required": true
+    },
+    "sku_name": {
+      "source": "document.querySelector('#title-product').innerText",
+      "type": "string",
+      "required": true
+    },
+    "small_cat": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "source_product_id": {
+      "source": "document.querySelector('[name=productId]').getAttribute('value')",
+      "type": "string",
+      "required": true
+    },
+    "source_sku_id": {
+      "source": "document.querySelector('.sku-social-fav [itemprop=sku]').innerText",
+      "type": "string",
+      "required": true
+    },
+    "stock": {
+      "source": "document.querySelector('input[name=order_count]').getAttribute('data-maxqty')",
+      "type": "number",
+      "required": false
+    },
+    "updated_num_words": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "video_urls": {
+      "source": "",
+      "type": "array",
+      "required": false,
+      "default": []
+    },
+    "word_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "cleaned_product_desc": {
+      "source": "document.querySelector('[itemprop=description]').innerHTML|clean_product_description",
+      "type": "string",
+      "required": false,
+      "default": ""
+    },
+    "product_name_char_count": {
+      "source": "document.querySelector('#title-product').innerText|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "product_desc_char_count": {
+      "source": "document.querySelector('[itemprop=description]').innerHTML|clean_product_description|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "is_lorikeet": {
+      "source": "document.querySelector('[itemprop=description]').innerHTML|contain_image|boolean_to_text",
+      "type": "string",
+      "required": false
+    },
+    "product_desc_images": {
+      "source": "document.querySelector('[itemprop=description]').innerHTML|extract_product_desc_images",
+      "type": "array",
+      "required": false,
+      "default": []
+    }
+  }
+}

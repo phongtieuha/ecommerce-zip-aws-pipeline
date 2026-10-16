@@ -1,0 +1,395 @@
+{
+  "vendor": "Momoshop-PDP-1",
+  "pathExtraction": {
+    "path": "data.rtnGoodsData"
+  },
+  "rowExpansion": {
+    "arrayPath": "formData{formType|eq:5}.goodsMutipleType.goodsMutipleTypeInfo"
+  },
+  "companionSource": {
+    "filePattern": "*/description/output/*.html",
+    "injectAs": "$description"
+  },
+  "columns": {
+    "ads_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "avg_rating": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0,
+      "max": 5
+    },
+    "brand_id": {
+      "source": "brandNo",
+      "type": "string",
+      "required": false
+    },
+    "brand_name": {
+      "source": "value.action.extraValue.brands[0].brandName",
+      "find": "formType|eq:19",
+      "type": "string",
+      "required": false
+    },
+    "category_id": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "category_name": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "category_name_en": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "cnt_bonus_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_desc_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_img_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_title_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_total_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_vid_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "currency": {
+      "source": "$s3.country|currency",
+      "type": "string",
+      "required": true
+    },
+    "download_rank": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "hist_sold": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "image_urls": {
+      "source": "imgTypeUrlArray|filter_empty_strings",
+      "type": "array",
+      "required": false,
+      "default": []
+    },
+    "is_ad": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_available": {
+      "source": "$expansion.goodsNum|gt:0",
+      "type": "boolean",
+      "required": true
+    },
+    "is_free_shipping": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_mart": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_official_shop": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_preferred_plus_seller": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "keyword_priority": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l1_category": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "Beauty & Personal Care"
+    },
+    "l2_category": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "Oral Care"
+    },
+    "l3_category": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l4_category": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "liked_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "listed_on": {
+      "source": "$root.cube_metadata.snapshot_timestamp|date:YYYY-MM-DD",
+      "type": "string",
+      "required": false
+    },
+    "manufacturer": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "num_bullets_update": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "num_images": {
+      "source": "imgTypeUrlArray|filter_empty_strings|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "num_vid": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "organic_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "overall_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "platform": {
+      "source": "$root.cube_metadata.channel",
+      "type": "string",
+      "required": true,
+      "default": "Momoshop"
+    },
+    "sku_price_after_discount": {
+      "source": "$expansion.goodsTypePrice.basePrice.price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "sku_price_before_discount": {
+      "source": "$expansion.goodsTypePrice.basePrice.price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_max_after_discount": {
+      "source": "$expansion.goodsTypePrice.basePrice.price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_max_before_discount": {
+      "source": "value.formPriceContent.basePrice.price || value.formPriceContent.rangePrice.maxPrice",
+      "find": "formType|eq:2",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_after_discount": {
+      "source": "$expansion.goodsTypePrice.basePrice.price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_before_discount": {
+      "source": "$expansion.goodsTypePrice.basePrice.price",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "product_desc": {
+      "source": "$description",
+      "type": "string",
+      "required": false,
+      "default": ""
+    },
+    "product_name": {
+      "source": "goodsName",
+      "type": "string",
+      "required": true
+    },
+    "product_url": {
+      "source": "goodsCode|mapurl:https://www.momoshop.com.tw/TP/{enterpriseNo}/goodsDetail/{value}",
+      "type": "string",
+      "required": true
+    },
+    "rating_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "rating_count_with_context": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "rating_count_with_image": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "recorded_on": {
+      "source": "$root.cube_metadata.snapshot_timestamp|date:YYYY-MM-DD",
+      "type": "string",
+      "required": true
+    },
+    "region": {
+      "source": "",
+      "type": "string",
+      "required": true,
+      "default": "$s3.country"
+    },
+    "review_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "search_keyword": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "shop_id": {
+      "source": "enterpriseNo",
+      "type": "string",
+      "required": true
+    },
+    "shop_location": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "$root.cube_metadata.country"
+    },
+    "shop_name": {
+      "source": "value.action.extraValue.brands[0].brandName",
+      "find": "formType|eq:19",
+      "type": "string",
+      "required": true
+    },
+    "sku_name": {
+      "source": "$expansion.goodsTypeAName",
+      "type": "string",
+      "required": true
+    },
+    "small_cat": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "source_product_id": {
+      "source": "goodsCode",
+      "type": "string",
+      "required": true
+    },
+    "source_sku_id": {
+      "source": "$expansion.goodsTypeCode",
+      "type": "string",
+      "required": true
+    },
+    "stock": {
+      "source": "$expansion.goodsNum",
+      "type": "number",
+      "required": false
+    },
+    "updated_num_words": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "video_urls": {
+      "source": "",
+      "type": "array",
+      "required": false,
+      "default": []
+    },
+    "word_count": {
+      "source": "$description|clean_product_description|count_words_no_bullet",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "cleaned_product_desc": {
+      "source": "$description|clean_product_description",
+      "type": "string",
+      "required": false,
+      "default": ""
+    },
+    "product_name_char_count": {
+      "source": "goodsName|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "product_desc_char_count": {
+      "source": "$description|clean_product_description|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "is_lorikeet": {
+      "source": "$description|contain_image|boolean_to_text",
+      "type": "string",
+      "required": false
+    },
+    "product_desc_images": {
+      "source": "$description|extract_product_desc_images",
+      "type": "array",
+      "required": false,
+      "default": []
+    }
+  }
+}

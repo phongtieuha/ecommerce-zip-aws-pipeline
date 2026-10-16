@@ -1,0 +1,389 @@
+{
+  "vendor": "Tiktok-PDP-2",
+  "pathExtraction": {
+    "path": "product_details.goda_protocol.global.product_info_resp.products[0]"
+  },
+  "rowExpansion": {
+    "arrayPath": "skus || product_model.product_detail.skus || product_model.skus || product_detail.skus"
+  },
+  "columns": {
+    "ads_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "avg_rating": {
+      "source": "product_detail_review.product_rating",
+      "type": "number",
+      "required": false,
+      "min": 0,
+      "max": 5
+    },
+    "brand_id": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "brand_name": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "category_id": {
+      "source": "product_base.category_id",
+      "type": "string",
+      "required": true
+    },
+    "category_name": {
+      "source": "product_base.category_name",
+      "type": "string",
+      "required": true
+    },
+    "category_name_en": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "cnt_bonus_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_desc_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_img_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_title_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_total_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "cnt_vid_score": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "currency": {
+      "source": "product_base.price.currency",
+      "type": "string",
+      "required": true,
+      "default": "$s3.country|currency"
+    },
+    "download_rank": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "hist_sold": {
+      "source": "product_base.sold_count || product_model.sold_count_model.sold_count || product_model.sold_count",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "image_urls": {
+      "source": "product_base.images|extract_field_to_array:thumb_url_list|flatten|unique_by_asset_hash || product_model.product_detail.images|extract_field_to_array:url_list|flatten|unique_by_asset_hash || product_model.images|extract_field_to_array:url_list|flatten|unique_by_asset_hash",
+      "type": "array",
+      "required": false,
+      "default": []
+    },
+    "is_ad": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_available": {
+      "source": "$expansion.stock|gt:0 || $expansion.sku_stock_status|gt:0",
+      "type": "boolean",
+      "required": true
+    },
+    "is_free_shipping": {
+      "source": "logistic.free_shipping",
+      "type": "boolean",
+      "required": false
+    },
+    "is_mart": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_official_shop": {
+      "source": "seller.store_label.official_label.label_type_str|eq:mall",
+      "type": "boolean",
+      "required": true
+    },
+    "is_preferred_plus_seller": {
+      "source": "seller.shop_recommend.is_recommend",
+      "type": "boolean",
+      "required": false
+    },
+    "keyword_priority": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l1_category": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "Beauty & Personal Care"
+    },
+    "l2_category": {
+      "source": "category_info[0].category_name",
+      "type": "string",
+      "required": false,
+      "default": "Oral Care"
+    },
+    "l3_category": {
+      "source": "category_info[1].category_name",
+      "type": "string",
+      "required": false
+    },
+    "l4_category": {
+      "source": "category_info[2].category_name",
+      "type": "string",
+      "required": false
+    },
+    "liked_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "listed_on": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "manufacturer": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "num_bullets_update": {
+      "source": "$root.product_details.goda_protocol.global.product_info_resp.dynamic_page.bricks|extract_field_to_array:brick_biz_data|join:,|count_bullets_clean",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "num_images": {
+      "source": "product_base.images|extract_field_to_array:thumb_url_list|flatten|unique_by_asset_hash|length || product_model.product_detail.images|extract_field_to_array:url_list|flatten|unique_by_asset_hash|length || product_model.images|extract_field_to_array:url_list|flatten|unique_by_asset_hash|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "num_vid": {
+      "source": "product_base.desc_video.video_infos|extract_field_to_array:main_url|length || product_model.videos.video_infos|extract_field_to_array:main_url|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "organic_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "overall_ranking": {
+      "source": "",
+      "type": "number",
+      "required": false
+    },
+    "platform": {
+      "source": "source",
+      "type": "string",
+      "required": true,
+      "default": "TikTok Shop"
+    },
+    "sku_price_after_discount": {
+      "source": "$expansion.price.real_price.price_val",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "sku_price_before_discount": {
+      "source": "$expansion.price.original_price_value",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_max_after_discount": {
+      "source": "price.max_sku_price || $expansion.price.real_price.price_val",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_max_before_discount": {
+      "source": "price.max_sku_original_price || $expansion.price.original_price_value",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_after_discount": {
+      "source": "price.min_sku_price || $expansion.price.real_price.price_val",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_before_discount": {
+      "source": "price.min_sku_original_price || $expansion.price.original_price_value",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "product_desc": {
+      "source": "$root.product_details.goda_protocol.global.product_info_resp.dynamic_page.bricks|extract_field_to_array:brick_biz_data|join:,",
+      "type": "string",
+      "required": false,
+      "default": ""
+    },
+    "product_name": {
+      "source": "product_base.title || product_detail.name || product_model.product_detail.name || product_model.name",
+      "type": "string",
+      "required": true
+    },
+    "product_url": {
+      "source": "product_id|mapurl:https://shop.tiktok.com/view/product/{value} || product_model.product_id|mapurl:https://shop.tiktok.com/view/product/{value}",
+      "type": "string",
+      "required": true
+    },
+    "rating_count": {
+      "source": "product_detail_review.review_count || review_model.product_review_count",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "rating_count_with_context": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "rating_count_with_image": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "recorded_on": {
+      "source": "$dateFromZipName",
+      "type": "string",
+      "required": true
+    },
+    "region": {
+      "source": "$root.cube_metadata.country",
+      "type": "string",
+      "required": true,
+      "default": "$s3.country"
+    },
+    "review_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "search_keyword": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "shop_id": {
+      "source": "$root.seller_id",
+      "type": "string",
+      "required": true
+    },
+    "shop_location": {
+      "source": "seller.seller_location",
+      "type": "string",
+      "required": false,
+      "default": "$root.cube_metadata.country"
+    },
+    "shop_name": {
+      "source": "$root.shop_name",
+      "type": "string",
+      "required": true
+    },
+    "sku_name": {
+      "source": "$expansion.sku_sale_props|pair_with_separator:prop_name,prop_value,:|join:; || $expansion.property_pairs|pair_with_separator:sku_property_name,sku_property_value_name|join:;",
+      "type": "string",
+      "required": true
+    },
+    "small_cat": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "source_product_id": {
+      "source": "product_id || product_model.product_id",
+      "type": "string",
+      "required": true
+    },
+    "source_sku_id": {
+      "source": "$expansion.sku_id",
+      "type": "string",
+      "required": true
+    },
+    "stock": {
+      "source": "$expansion.stock|gt:0|boolean_to_stock || $expansion.sku_quantity.available_quantity",
+      "type": "number",
+      "required": false
+    },
+    "updated_num_words": {
+      "source": "$root.product_details.goda_protocol.global.product_info_resp.dynamic_page.bricks|extract_field_to_array:brick_biz_data|join:,|count_words_no_bullet",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "video_urls": {
+      "source": "product_base.desc_video.video_infos|extract_field_to_array:main_url || product_model.videos.video_infos|extract_field_to_array:main_url",
+      "type": "array",
+      "required": false,
+      "default": []
+    },
+    "word_count": {
+      "source": "$root.product_details.goda_protocol.global.product_info_resp.dynamic_page.bricks|extract_field_to_array:brick_biz_data|join:,|count_words",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "cleaned_product_desc": {
+      "source": "$root.product_details.goda_protocol.global.product_info_resp.dynamic_page.bricks|extract_field_to_array:brick_biz_data|clean_tiktok_product_description",
+      "type": "string",
+      "required": false,
+      "default": ""
+    },
+    "product_name_char_count": {
+      "source": "product_base.title|length || product_detail.name|length || product_model.product_detail.name|length || product_model.name|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "product_desc_char_count": {
+      "source": "$root.product_details.goda_protocol.global.product_info_resp.dynamic_page.bricks|extract_field_to_array:brick_biz_data|clean_tiktok_product_description|length",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "is_lorikeet": {
+      "source": "$root.product_details.goda_protocol.global.product_info_resp.dynamic_page.bricks|extract_field_to_array:brick_biz_data|join:,|contain_image|boolean_to_text",
+      "type": "string",
+      "required": false
+    },
+    "product_desc_images": {
+      "source": "$root.product_details.goda_protocol.global.product_info_resp.dynamic_page.bricks|extract_field_to_array:brick_biz_data|join:,|extract_product_desc_images|unique_by_asset_hash",
+      "type": "array",
+      "required": false,
+      "default": []
+    }
+  }
+}

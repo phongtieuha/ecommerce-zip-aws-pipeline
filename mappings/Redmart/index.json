@@ -1,0 +1,41 @@
+{
+  "vendor": "Redmart",
+  "mappings": [
+    {
+      "id": "Redmart-PDP-1",
+      "name": "Redmart PDP (Product Detail Page) v1",
+      "file": "Redmart-PDP-1.json",
+      "description": "Standard product detail page mapping with populated source fields"
+    },
+    {
+      "id": "Redmart-Products",
+      "name": "Redmart Products Schema",
+      "file": "Redmart-Products.json",
+      "description": "Products schema with empty source fields (template)"
+    },
+    {
+      "id": "Redmart-Products-2",
+      "name": "Redmart Products Schema v2",
+      "file": "Redmart-Products-2.json",
+      "description": "Feature 2"
+    }
+  ],
+  "default": "Redmart-PDP-1",
+  "selectionRules": [
+    {
+      "requestType": "shop-products",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/*/output/{\\d+}.json",
+      "mappingId": "Redmart-Products"
+    },
+    {
+      "requestType": "product-skus",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/output/*.json",
+      "mappingId": "Redmart-PDP-1"
+    },
+    {
+      "requestType": "keyword-products",
+      "filename": "*/**/{id|sg|ph|cn|tw|vn|th|my}/*.json",
+      "mappingId": "Redmart-Products-2"
+    }
+  ]
+}

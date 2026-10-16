@@ -1,0 +1,251 @@
+{
+  "vendor": "Redmart-Products-2",
+  "pathExtraction": {
+    "path": "mods.listItems",
+    "deduplicateByTimestamp": {
+      "pattern": "^(.+?)_(\\d{2}-\\d{2}-\\d{4}_\\d{2}-\\d{2}-\\d{2})_[a-f0-9]+\\.json$"
+    }
+  },
+  "rowDeduplication": {
+    "partitionBy": ["region", "recorded_on", "search_keyword"],
+    "key": "source_product_id",
+    "keep": "first"
+  },
+  "columns": {
+    "ads_ranking": {
+      "compute": {
+        "type": "ranking",
+        "kind": "ads",
+        "dependsOn": "is_ad"
+      },
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "avg_rating": {
+      "source": "ratingScore",
+      "type": "number",
+      "required": false,
+      "min": 0,
+      "max": 5
+    },
+    "brand_name": {
+      "source": "brandName",
+      "type": "string",
+      "required": false
+    },
+    "category_id": {
+      "source": "categories[0]",
+      "type": "string",
+      "required": true
+    },
+    "category_name": {
+      "source": "",
+      "type": "string",
+      "required": true
+    },
+    "category_name_en": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "currency": {
+      "source": "$root.mainInfo.currency",
+      "type": "string",
+      "required": true,
+      "default": "$s3.country|currency"
+    },
+    "download_rank": {
+      "compute": {
+        "type": "ranking",
+        "kind": "download"
+      },
+      "type": "number",
+      "required": false
+    },
+    "hist_sold": {
+      "source": "itemSoldCntShow|text_to_number",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "is_ad": {
+      "source": "adFlag|eq:0 && isSponsored",
+      "type": "boolean",
+      "required": false
+    },
+    "is_free_shipping": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_mart": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "is_official_shop": {
+      "source": "official",
+      "type": "boolean",
+      "required": true
+    },
+    "is_preferred_plus_seller": {
+      "source": "",
+      "type": "boolean",
+      "required": false
+    },
+    "keyword_priority": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l1_category": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "Beauty & Personal Care"
+    },
+    "l2_category": {
+      "source": "",
+      "type": "string",
+      "required": false,
+      "default": "Oral Care"
+    },
+    "l3_category": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "l4_category": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "liked_count": {
+      "source": "",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "listed_on": {
+      "source": "listed_on_unix|date:YYYY-MM-DD",
+      "type": "string",
+      "required": false
+    },
+    "manufacturer": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "organic_ranking": {
+      "compute": {
+        "type": "ranking",
+        "kind": "organic",
+        "dependsOn": "is_ad"
+      },
+      "type": "number",
+      "required": false
+    },
+    "overall_ranking": {
+      "compute": {
+        "type": "ranking",
+        "kind": "overall"
+      },
+      "type": "number",
+      "required": false
+    },
+    "platform": {
+      "source": "",
+      "type": "string",
+      "required": true,
+      "default": "Redmart"
+    },
+    "price_max_after_discount": {
+      "source": "originalPrice",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_max_before_discount": {
+      "source": "originalPrice",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_after_discount": {
+      "source": "priceShow",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "price_min_before_discount": {
+      "source": "priceShow|text_to_number",
+      "type": "number",
+      "required": false,
+      "min": 0
+    },
+    "product_name": {
+      "source": "name",
+      "type": "string",
+      "required": true
+    },
+    "product_url": {
+      "source": "productUrl",
+      "type": "string",
+      "required": true
+    },
+    "rating_count": {
+      "source": "review",
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "recorded_on": {
+      "source": "$dateFromFilename",
+      "type": "string",
+      "required": true
+    },
+    "region": {
+      "source": "",
+      "type": "string",
+      "required": true,
+      "default": "$s3.country"
+    },
+    "search_keyword": {
+      "source": "$keywordFromFilename",
+      "type": "string",
+      "required": false
+    },
+    "shop_id": {
+      "source": "sellerId",
+      "type": "string",
+      "required": true
+    },
+    "shop_location": {
+      "source": "location",
+      "type": "string",
+      "required": false,
+      "default": "$root.cube_metadata.country"
+    },
+    "shop_name": {
+      "source": "sellerName",
+      "type": "string",
+      "required": true
+    },
+    "small_cat": {
+      "source": "",
+      "type": "string",
+      "required": false
+    },
+    "source_product_id": {
+      "source": "itemId || nid",
+      "type": "string",
+      "required": true
+    },
+    "stock": {
+      "source": "inStock|boolean_to_stock",
+      "type": "number",
+      "required": false
+    }
+  }
+}

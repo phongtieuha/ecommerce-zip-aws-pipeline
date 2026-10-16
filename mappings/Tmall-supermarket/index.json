@@ -1,0 +1,30 @@
+{
+  "vendor": "Tmall-supermarket",
+  "mappings": [
+    {
+      "id": "Tmall-supermarket-PDP-1",
+      "name": "Tmall-supermarket PDP (Product Detail Page) v1",
+      "file": "Tmall-supermarket-PDP-1.json",
+      "description": "Standard product detail page mapping with populated source fields"
+    },
+    {
+      "id": "Tmall-supermarket-Products-2",
+      "name": "Tmall-supermarket Products Schema v2",
+      "file": "Tmall-supermarket-Products-2.json",
+      "description": "Feature 2"
+    }
+  ],
+  "default": "Tmall-supermarket-PDP-1",
+  "selectionRules": [
+    {
+      "requestType": "product-skus",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/output/*.json",
+      "mappingId": "Tmall-supermarket-PDP-1"
+    },
+    {
+      "requestType": "keyword-products",
+      "filename": "{id|sg|ph|cn|tw|vn|th|my}/(?<brand_name>[^/]+)/output/*.json",
+      "mappingId": "Tmall-supermarket-Products-2"
+    }
+  ]
+}

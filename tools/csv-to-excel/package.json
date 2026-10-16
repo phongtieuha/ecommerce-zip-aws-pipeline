@@ -1,0 +1,13 @@
+{
+  "name": "@filepipeline/csv-to-excel",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "bun run index.ts"
+  },
+  "dependencies": {
+    "csv-parse": "^5.5.0",
+    "xlsx": "^0.18.5"
+  }
+}
